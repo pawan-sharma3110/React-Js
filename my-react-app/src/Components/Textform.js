@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-const [highlight, setHighlight] = useState(false);
-const [text, setText] = useState("");
+
 export default function Textarea(props) {
+  const [highlight, setHighlight] = useState(false);
+  const [text, setText] = useState("");
+
   const handelUPCase = () => {
     let newText = text.toUpperCase();
     setText(newText);
   };
+
   const handelLowCase = () => {
     let newText = text.toLowerCase();
     setText(newText);
@@ -14,9 +17,9 @@ export default function Textarea(props) {
   const handelOnChanged = (event) => {
     setText(event.target.value);
   };
+
   const handelHighLightCase = () => {
     setHighlight(!highlight); // Toggle highlight state
-
   };
 
   return (
@@ -33,22 +36,22 @@ export default function Textarea(props) {
           ></textarea>
         </div>
         <button type="button" className="btn btn-primary mx-3" onClick={handelUPCase}>
-          Conver Text To Upper Case
+          Convert Text To Upper Case
         </button>
         <button type="button" className="btn btn-primary mx-3" onClick={handelLowCase}>
-          Conver Text To Lower Case
+          Convert Text To Lower Case
         </button>
         <button type="button" className="btn btn-warning mx-3" onClick={handelHighLightCase}>
-        {highlight? "Unhighlight": "HighLight Text"}
+          {highlight ? "Unhighlight" : "Highlight Text"}
         </button>
       </div>
       <div className="container  my-4">
         <h1>Your Text Summary</h1>
         <p>
-          {text.split(" ").length}Words And {text.length} Character
+          {text.split(" ").length} Words And {text.length} Characters
         </p>
-        <p>{0.08 * text.split(" ").length}Minutes Spent To Read It</p>
-        <h2>Text Perviwe</h2>
+        <p>{0.08 * text.split(" ").length} Minutes Spent To Read It</p>
+        <h2>Text Preview</h2>
         <p className={highlight ? "highlighted" : ""}>{text}</p>
       </div>
     </React.Fragment>
