@@ -25,6 +25,16 @@ export default function Textarea(props) {
     let newText = "";
     setText(newText);
   };
+  const handelCopyText = () => {
+    let textCopy = document.getElementById("mybox");
+    textCopy.select();
+    textCopy.setSelectionRange(0, textCopy.value.length);
+    navigator.clipboard.writeText(textCopy.value);
+  };
+  const handelExtraSpace = () => {
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "));
+  };
 
   return (
     <React.Fragment>
@@ -48,9 +58,16 @@ export default function Textarea(props) {
         <button type="button" className="btn btn-primary mx-3" onClick={handelClearText}>
           Clear Text
         </button>
-        <button type="button" className="btn btn-warning mx-3" onClick={handelHighLightCase}>
-          {highlight ? "Unhighlight" : "Highlight Text"}
+        <button type="button" className="btn btn-primary mx-3" onClick={handelCopyText}>
+          Copy Text
         </button>
+        <button type="button" className="btn btn-primary mx-3" onClick={handelExtraSpace}>
+          Remove extra space
+        </button>
+
+        {/* <button type="button" className="btn btn-warning mx-3" onClick={handelHighLightCase}>
+          {highlight ? "Unhighlight" : "Highlight Text"}
+        </button> */}
       </div>
       <div className="container  my-4">
         <h1>Your Text Summary</h1>
