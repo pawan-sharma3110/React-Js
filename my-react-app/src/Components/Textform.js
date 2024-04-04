@@ -21,6 +21,10 @@ export default function Textarea(props) {
   const handelHighLightCase = () => {
     setHighlight(!highlight); // Toggle highlight state
   };
+  const handelClearText = () => {
+    let newText = "";
+    setText(newText);
+  };
 
   return (
     <React.Fragment>
@@ -40,6 +44,9 @@ export default function Textarea(props) {
         </button>
         <button type="button" className="btn btn-primary mx-3" onClick={handelLowCase}>
           Convert Text To Lower Case
+        </button>
+        <button type="button" className="btn btn-primary mx-3" onClick={handelClearText}>
+          Clear Text
         </button>
         <button type="button" className="btn btn-warning mx-3" onClick={handelHighLightCase}>
           {highlight ? "Unhighlight" : "Highlight Text"}
