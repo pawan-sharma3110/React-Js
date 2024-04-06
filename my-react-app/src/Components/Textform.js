@@ -13,6 +13,7 @@ export default function Textarea(props) {
   const handelLowCase = () => {
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to lowercase!", "Success");
   };
 
   const handelOnChanged = (event) => {
@@ -25,6 +26,7 @@ export default function Textarea(props) {
   const handelClearText = () => {
     let newText = "";
     setText(newText);
+    props.showAlert("Text box clean!", "Success");
   };
   const handelCopyText = () => {
     let textCopy = document.getElementById("mybox");
@@ -35,6 +37,7 @@ export default function Textarea(props) {
   const handelExtraSpace = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    props.showAlert("Extra space remove!", "Success");
   };
 
   return (

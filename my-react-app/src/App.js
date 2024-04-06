@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./Components/Navbar.js";
 import TextForm from "./Components/Textform.js";
 import Alert from "./Components/Alert.js";
+export default App
 // import About from "./Components/About.js";
 
 function App() {
@@ -11,7 +12,10 @@ function App() {
 
   const showAlert = (message, type) => {
     setAlert({ message, type });
-  };
+    setTimeout(() => {
+    setAlert(null)
+    },1000);
+  }
 
   const toggleMode = () => {
     if (mode === "light") {
@@ -30,9 +34,8 @@ function App() {
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
       <Alert alert={alert} />
       <div className="container my-3">
-        <TextForm heading="Enter Your Text To Analyze : " mode={mode} />
+        <TextForm heading="Enter Your Text To Analyze : " mode={mode} showAlert={showAlert} />
       </div>
     </React.Fragment>
   );
 }
-export default App;
