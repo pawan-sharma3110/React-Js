@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
 export default function Textarea(props) {
-  const [highlight, setHighlight] = useState(false);
+  // const [highlight, setHighlight] = useState(false);
   const [text, setText] = useState("");
 
   const handelUPCase = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to uppercase!", "Success");
   };
 
   const handelLowCase = () => {
@@ -18,9 +19,9 @@ export default function Textarea(props) {
     setText(event.target.value);
   };
 
-  const handelHighLightCase = () => {
-    setHighlight(!highlight); // Toggle highlight state
-  };
+  // const handelHighLightCase = () => {
+  //   setHighlight(!highlight); // Toggle highlight state
+  // };
   const handelClearText = () => {
     let newText = "";
     setText(newText);
@@ -38,7 +39,7 @@ export default function Textarea(props) {
 
   return (
     <React.Fragment>
-      <div className="container">
+      <div className="container" style={{ color: props.mode === "dark" ? "white" : "black" }}>
         <h1>{props.heading}</h1>
         <div className="mb-3">
           <textarea
@@ -47,6 +48,10 @@ export default function Textarea(props) {
             rows="5"
             value={text}
             onChange={handelOnChanged}
+            style={{
+              backgroundColor: props.mode === "dark" ? "#042743" : "white",
+              color: props.mode === "dark" ? "white" : "black",
+            }}
           ></textarea>
         </div>
         <button type="button" className="btn btn-primary mx-3" onClick={handelUPCase}>
@@ -69,14 +74,21 @@ export default function Textarea(props) {
           {highlight ? "Unhighlight" : "Highlight Text"}
         </button> */}
       </div>
-      <div className="container  my-4">
+      <div
+        className="container  my-4"
+        style={{
+          backgroundColor: props.mode === "dark" ? "#042743" : "white",
+          color: props.mode === "dark" ? "white" : "black",
+        }}
+      >
         <h1>Your Text Summary</h1>
         <p>
           {text.split(" ").length} Words And {text.length} Characters
         </p>
         <p>{0.08 * text.split(" ").length} Minutes Spent To Read It</p>
         <h2>Text Preview</h2>
-        <p className={highlight ? "highlighted" : ""}>{text}</p>
+        {/* <p className={highlight ? "highlighted" : ""}>{text}</p> */}
+        <p>{text.length > 0 ? text : "Enter Your Text Upper Textbox To Preview Here"}</p>
       </div>
     </React.Fragment>
   );
